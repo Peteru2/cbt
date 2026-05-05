@@ -80,15 +80,19 @@ export const useExamStore = create<ExamStore>()(
         set({
           examSubmitted: true,
         }),
-      resetExam: () =>
-        set({
-          candidateId: "",
-          currentQuestionIndex: 0,
-          answers: {},
-          examStarted: false,
-          examSubmitted: false,
-          examStartTime: null,
-        }),
+          resetExam: () => {
+          set(() => ({
+            candidateId: "",
+            currentQuestionIndex: 0,
+            answers: {},
+            examStarted: false,
+            examSubmitted: false,
+            examStartTime: null,
+            selectedQuestions: [],
+          }))
+
+          localStorage.removeItem("cbt-storage")
+        },
     }),
     {
       name: "cbt-storage",

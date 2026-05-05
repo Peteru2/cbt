@@ -3,8 +3,16 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { candidates } from "./data/candidates";
 import { useExamStore } from "./store/examStore";
+import { useEffect } from "react";
+
+
 export default function HomePage() {
   const router = useRouter();
+  useEffect(() => {
+  if (window.location.pathname === "/") {
+    localStorage.removeItem("cbt-storage")
+  }
+}, [])
   const [candidateId, setCandidateIdInput] = useState("");
   const [error, setError] = useState("");
   const setCandidateId = useExamStore((state) => state.setCandidateId);
