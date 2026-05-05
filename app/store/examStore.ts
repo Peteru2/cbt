@@ -2,6 +2,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { questions } from "../data/questions";
+import { Question } from "../types/question"
+import { shuffleQuestions } from "../utils/shuffleQuestions"
 
 interface ExamStore {
   candidateId: string;
@@ -20,6 +22,8 @@ interface ExamStore {
 
   submitExam: () => void;
   resetExam: () => void;
+  selectedQuestions: Question[]
+initializeQuestions: () => void
 }
 
 export const useExamStore = create<ExamStore>()(
@@ -28,14 +32,23 @@ export const useExamStore = create<ExamStore>()(
       candidateId: "",
       currentQuestionIndex: 0,
       answers: {},
-      examStarted: false,
-      examSubmitted: false,
-      examStartTime: null,
-      duration: 30 * 60,
-      setCandidateId: (id) =>
+       setCandidateId: (id) =>
         set({
           candidateId: id,
         }),
+      examStarted: false,
+      examSubmitted: false,
+      examStartTime: null,
+      duration: 30 * 20,
+      selectedQuestions: [],
+     
+        initializeQuestions: () =>
+  set({
+    selectedQuestions: shuffleQuestions(
+      questions,
+      20
+    ),
+  }),
       startExam: () =>
         set({
           examStarted: true,
@@ -49,12 +62,12 @@ export const useExamStore = create<ExamStore>()(
           },
         })),
       nextQuestion: () =>
-        set((state) => ({
-          currentQuestionIndex: Math.min(
-            state.currentQuestionIndex + 1,
-            questions.length - 1,
-          ),
-        })),
+  set((state) => ({
+    currentQuestionIndex: Math.min(
+      state.currentQuestionIndex + 1,
+      state.selectedQuestions.length - 1
+    ),
+  })),
       prevQuestion: () =>
         set((state) => ({
           currentQuestionIndex: Math.max(state.currentQuestionIndex - 1, 0),

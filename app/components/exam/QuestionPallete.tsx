@@ -1,6 +1,5 @@
 "use client"
 
-import { questions } from "../../data/questions"
 import { useExamStore } from "../../store/examStore"
 
 export default function QuestionPalette() {
@@ -9,6 +8,9 @@ export default function QuestionPalette() {
   const currentQuestionIndex = useExamStore(
     (state) => state.currentQuestionIndex
   )
+  const selectedQuestions = useExamStore(
+  (state) => state.selectedQuestions
+)
 
   const jumpToQuestion = useExamStore(
     (state) => state.jumpToQuestion
@@ -16,7 +18,7 @@ export default function QuestionPalette() {
 
   return (
     <div className="grid grid-cols-5 gap-3">
-      {questions.map((question, index) => {
+      {selectedQuestions.map((question, index) => {
         const answered = answers[question.id]
 
         const active =

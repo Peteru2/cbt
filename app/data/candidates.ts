@@ -1,7 +1,4 @@
-export const candidates = [
-  "CBT-1001",
-  "CBT-1002",
-  "CBT-1003",
-  "CBT-1004",
-  "CBT-1005",
-]
+export const candidates = Array.from(
+  { length: 80 },
+  (_, index) => `CBT-${1001 + index}`
+)

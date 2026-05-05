@@ -1,15 +1,20 @@
-
-
 import { Question } from "../types/question"
+
 export const questions: Question[] = [
   {
     id: 1,
+    question: "What is 15 + 7?",
+    options: ["20", "21", "22", "23"],
+    answer: "22",
+  },
+  {
+    id: 2,
     question: "Which of the following is a JavaScript library?",
     options: ["Laravel", "React", "Django", "Flask"],
     answer: "React",
   },
   {
-    id: 2,
+    id: 3,
     question: "What does HTML stand for?",
     options: [
       "Hyper Text Markup Language",
@@ -20,9 +25,175 @@ export const questions: Question[] = [
     answer: "Hyper Text Markup Language",
   },
   {
-    id: 3,
+    id: 4,
     question: "Which company developed JavaScript?",
     options: ["Netscape", "Microsoft", "Apple", "Google"],
     answer: "Netscape",
+  },
+  {
+    id: 5,
+    question: "What is the value of 9 × 6?",
+    options: ["54", "56", "52", "48"],
+    answer: "54",
+  },
+  {
+    id: 6,
+    question: "Which of these is a noun?",
+    options: ["Run", "Beautiful", "Table", "Quickly"],
+    answer: "Table",
+  },
+  {
+    id: 7,
+    question: "Who is the current head of a classroom called?",
+    options: ["Captain", "Prefect", "Monitor", "Teacher"],
+    answer: "Monitor",
+  },
+  {
+    id: 8,
+    question: "What is the square root of 64?",
+    options: ["6", "7", "8", "9"],
+    answer: "8",
+  },
+  {
+    id: 9,
+    question: "Choose the correct spelling.",
+    options: ["Accomodation", "Accommodation", "Acommodation", "Acomodation"],
+    answer: "Accommodation",
+  },
+  {
+    id: 10,
+    question: "What is the capital of Nigeria?",
+    options: ["Lagos", "Kano", "Abuja", "Ibadan"],
+    answer: "Abuja",
+  },
+  {
+    id: 11,
+    question: "What is 45 ÷ 5?",
+    options: ["8", "9", "10", "11"],
+    answer: "9",
+  },
+  {
+    id: 12,
+    question: "Which of these is a pronoun?",
+    options: ["Happy", "She", "Book", "Walk"],
+    answer: "She",
+  },
+  {
+    id: 13,
+    question: "Citizens have the right to ____.",
+    options: ["Break laws", "Vote", "Fight", "Steal"],
+    answer: "Vote",
+  },
+  {
+    id: 14,
+    question: "What is 12 squared?",
+    options: ["122", "124", "144", "142"],
+    answer: "144",
+  },
+  {
+    id: 15,
+    question: "Choose the correct sentence.",
+    options: [
+      "He go to school.",
+      "He goes to school.",
+      "He going to school.",
+      "He gone to school.",
+    ],
+    answer: "He goes to school.",
+  },
+  {
+    id: 16,
+    question: "Democracy means government of the ____.",
+    options: ["Kings", "People", "Rich", "Military"],
+    answer: "People",
+  },
+  {
+    id: 17,
+    question: "What is 100 - 37?",
+    options: ["63", "64", "62", "65"],
+    answer: "63",
+  },
+  {
+    id: 18,
+    question: "Which punctuation mark ends a question?",
+    options: [".", ",", "?", "!"],
+    answer: "?",
+  },
+  {
+    id: 19,
+    question: "A good citizen should always ____ the law.",
+    options: ["Break", "Ignore", "Obey", "Fight"],
+    answer: "Obey",
+  },
+  {
+    id: 20,
+    question: "What is 7 × 8?",
+    options: ["54", "56", "58", "48"],
+    answer: "56",
+  },
+  {
+    id: 21,
+    question: "Which of these is an adjective?",
+    options: ["Beautiful", "Jump", "Slowly", "Teacher"],
+    answer: "Beautiful",
+  },
+  {
+    id: 22,
+    question: "What is the value of 81 ÷ 9?",
+    options: ["8", "9", "7", "6"],
+    answer: "9",
+  },
+  {
+    id: 23,
+    question: "Which arm of government makes laws?",
+    options: ["Executive", "Judiciary", "Legislative", "Police"],
+    answer: "Legislative",
+  },
+  {
+    id: 24,
+    question: "Choose the opposite of 'Happy'.",
+    options: ["Joyful", "Excited", "Sad", "Glad"],
+    answer: "Sad",
+  },
+  {
+    id: 25,
+    question: "What is 25% of 100?",
+    options: ["20", "25", "30", "35"],
+    answer: "25",
+  },
+  {
+    id: 26,
+    question: "Which of these is a sentence?",
+    options: [
+      "Running fast",
+      "The boy is reading.",
+      "Quickly",
+      "Blue car",
+    ],
+    answer: "The boy is reading.",
+  },
+  {
+    id: 27,
+    question: "The national anthem is a symbol of ____.",
+    options: ["Peace", "Unity", "Poverty", "Fighting"],
+    answer: "Unity",
+  },
+  {
+    id: 28,
+    question: "What is 14 + 19?",
+    options: ["31", "32", "33", "34"],
+    answer: "33",
+  },
+  {
+    id: 29,
+    question: "Choose the correct plural form of 'Child'.",
+    options: ["Childs", "Children", "Childes", "Childrens"],
+    answer: "Children",
+  },
+  {
+    id: 30,
+    question: "Which of these is a responsibility of citizens?",
+    options: ["Destroy public property", "Pay taxes", "Fight leaders", "Ignore rules"],
+    answer: "Pay taxes",
   },
 ]

@@ -5,10 +5,16 @@ import { useExamStore } from "../store/examStore";
 export default function InstructionsPage() {
   const router = useRouter();
   const startExam = useExamStore((state) => state.startExam);
-  const handleBegin = () => {
-    startExam();
-    router.push("/exam");
-  };
+  const initializeQuestions = useExamStore(
+  (state) => state.initializeQuestions
+)
+ const handleBegin = () => {
+  initializeQuestions()
+
+  startExam()
+
+  router.push("/exam")
+}
   return (
     <main
       className="min-h-screen bg-slate-950 text-white flex items-center

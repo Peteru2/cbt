@@ -21,6 +21,7 @@ export default function HomePage() {
     setCandidateId(trimmed);
     router.push("/instructions");
   };
+  
   return (
     <main
       className="min-h-screen bg-slate-950 text-white flex items-center
