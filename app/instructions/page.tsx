@@ -1,20 +1,27 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useExamStore } from "../store/examStore";
+import { useState } from "react";
 
 export default function InstructionsPage() {
   const router = useRouter();
+  const [isStarting, setIsStarting] = useState(false);
   const startExam = useExamStore((state) => state.startExam);
   const initializeQuestions = useExamStore(
-  (state) => state.initializeQuestions
-)
- const handleBegin = () => {
-  initializeQuestions()
+    (state) => state.initializeQuestions,
+  );
+  const handleBegin = async () => {
+    try {
+      setIsStarting(true);
+      initializeQuestions();
+      startExam();
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      router.push("/exam");
+    } finally {
+      setIsStarting(false);
+    }
+  };
 
-  startExam()
-
-  router.push("/exam")
-}
   return (
     <main
       className="min-h-screen bg-slate-950 text-white flex items-center
@@ -36,10 +43,15 @@ border-slate-800"
 
         <button
           onClick={handleBegin}
-          className="mt-8 h-14 px-8 cursor-pointer  rounded-xl bg-blue-600 hover:bg-blue-500
-transition font-semibold"
+          disabled={isStarting}
+          className={`h-14 px-8 mt-6 rounded-xl font-semibold transition
+  ${
+    isStarting
+      ? "bg-blue-400 cursor-not-allowed pointer-events-none opacity-70"
+      : "bg-blue-600 hover:bg-blue-500"
+  }`}
         >
-          Begin Test
+          {isStarting ? "Preparing Exam..." : "Begin Test"}
         </button>
       </div>
     </main>

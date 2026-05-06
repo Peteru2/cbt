@@ -31,9 +31,20 @@ const router = useRouter()
     answers
   )
 
-  const percentage = Math.round(
-    (score / selectedQuestions.length) * 100
+  const percentage =
+  selectedQuestions.length > 0
+    ? Math.round(
+        (score / selectedQuestions.length) * 100
+      )
+    : 0
+
+    if (!selectedQuestions.length) {
+  return (
+    <main className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
+      Loading result...
+    </main>
   )
+}
 
   return (
     <main className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4">

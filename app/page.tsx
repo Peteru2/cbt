@@ -15,20 +15,39 @@ export default function HomePage() {
 }, [])
   const [candidateId, setCandidateIdInput] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
   const setCandidateId = useExamStore((state) => state.setCandidateId);
-  const handleLogin = () => {
-    const trimmed = candidateId.trim().toUpperCase();
-    if (!trimmed) {
-      setError("Candidate ID is required");
-      return;
-    }
-    if (!candidates.includes(trimmed)) {
-      setError("Invalid Candidate ID");
-      return;
-    }
-    setCandidateId(trimmed);
-    router.push("/instructions");
-  };
+  const handleLogin = async () => {
+  setError("")
+
+  const trimmed = candidateId
+    .trim()
+    .toUpperCase()
+
+  if (!trimmed) {
+    setError("Candidate ID is required")
+    return
+  }
+
+  if (!candidates.includes(trimmed)) {
+    setError("Invalid Candidate ID")
+    return
+  }
+
+  try {
+    setIsLoading(true)
+
+    setCandidateId(trimmed)
+
+    await new Promise((resolve) =>
+      setTimeout(resolve, 800)
+    )
+
+    router.push("/instructions")
+  } finally {
+    setIsLoading(false)
+  }
+}
   
   return (
     <main
@@ -56,12 +75,17 @@ outline-none"
         {error && <p className="text-red-400 mt-3 text-sm">{error}</p>}
 
         <button
-          onClick={handleLogin}
-          className="w-full h-14 rounded-xl cursor-pointer  bg-blue-600 hover:bg-blue-500
-transition mt-6 font-semibold"
-        >
-          Continue
-        </button>
+  onClick={handleLogin}
+  disabled={isLoading}
+  className={`w-full h-14 rounded-xl mt-6 font-semibold transition
+  ${
+    isLoading
+      ? "bg-blue-400 cursor-not-allowed pointer-events-none opacity-70"
+      : "bg-blue-600 hover:bg-blue-500 cursor-pointer"
+  }`}
+>
+  {isLoading ? "Please wait..." : "Continue"}
+</button>
       </div>
     </main>
   );
