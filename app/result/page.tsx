@@ -95,30 +95,6 @@ export default function ResultPage() {
   // }
 
 
-  if (!selectedQuestions.length) {
-    return (
-      <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center">
-          <h1 className="text-2xl font-bold text-white">
-            No Result Found
-          </h1>
-
-          <p className="text-slate-400 mt-3 leading-relaxed">
-            Your examination result could not be
-            restored. Please start a new session.
-          </p>
-
-          <button
-            onClick={() => router.push("/")}
-            className="mt-6 h-12 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 transition font-semibold"
-          >
-            Return Home
-          </button>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4 overflow-hidden">
   
