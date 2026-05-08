@@ -12,6 +12,9 @@ import NavigationButtons from "../components/exam/NavigationButtons";
 
 export default function ExamPage() {
   const router = useRouter();
+  useEffect(() => {
+  router.prefetch("/result");
+}, [router]);
 
   // =========================
   // HYDRATION GUARD

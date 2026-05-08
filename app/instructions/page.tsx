@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { useExamStore } from "../store/examStore";
 
 export default function InstructionsPage() {
   const router = useRouter();
+  useEffect(() => {
+  router.prefetch("/exam");
+}, [router]);
 
   // =========================
   // LOCAL STATE

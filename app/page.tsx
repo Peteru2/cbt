@@ -8,7 +8,9 @@ import { useExamStore } from "./store/examStore";
 
 export default function HomePage() {
   const router = useRouter();
-
+useEffect(() => {
+  router.prefetch("/instructions");
+}, [router]);
   // =========================
   // CLEAR PREVIOUS SESSION
   // =========================
