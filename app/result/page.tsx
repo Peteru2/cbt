@@ -63,11 +63,6 @@ export default function ResultPage() {
 
     try {
       setIsFinishing(true);
-
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1200)
-      );
-
       resetExam();
 
       router.push("/");

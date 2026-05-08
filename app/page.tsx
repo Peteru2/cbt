@@ -63,11 +63,6 @@ export default function HomePage() {
       // Save candidate
       setCandidateId(trimmed);
 
-      // Force loading state to feel intentional
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1500)
-      );
-
       router.push("/instructions");
     } catch (error) {
       console.error(error);

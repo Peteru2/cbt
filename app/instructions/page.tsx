@@ -42,14 +42,7 @@ export default function InstructionsPage() {
 
       // Initialize exam
       initializeQuestions();
-
       startExam();
-
-      // Intentional premium delay
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1500)
-      );
-
       router.push("/exam");
     } catch (error) {
       console.error(error);

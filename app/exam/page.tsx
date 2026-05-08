@@ -89,9 +89,7 @@ export default function ExamPage() {
 
       submitExam();
 
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1200)
-      );
+     
 
       router.push("/result");
     } finally {
