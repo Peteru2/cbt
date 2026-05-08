@@ -79,25 +79,25 @@ export default function ResultPage() {
   };
 
 
-  if (!hasHydrated) {
-    return (
-      <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-        <div className="flex flex-col items-center gap-5">
-          <div className="h-14 w-14 rounded-full border-4 border-slate-700 border-t-blue-500 animate-spin" />
+  // if (!hasHydrated) {
+  //   return (
+  //     <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+  //       <div className="flex flex-col items-center gap-5">
+  //         <div className="h-14 w-14 rounded-full border-4 border-slate-700 border-t-blue-500 animate-spin" />
 
-          <div className="text-center">
-            <h2 className="text-white text-lg font-semibold">
-              Loading Result
-            </h2>
+  //         <div className="text-center">
+  //           <h2 className="text-white text-lg font-semibold">
+  //             Loading Result
+  //           </h2>
 
-            <p className="text-slate-400 text-sm mt-1">
-              Restoring examination data...
-            </p>
-          </div>
-        </div>
-      </main>
-    );
-  }
+  //           <p className="text-slate-400 text-sm mt-1">
+  //             Restoring examination data...
+  //           </p>
+  //         </div>
+  //       </div>
+  //     </main>
+  //   );
+  // }
 
 
   if (!selectedQuestions.length) {
