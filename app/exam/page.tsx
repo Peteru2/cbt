@@ -86,11 +86,7 @@ export default function ExamPage() {
   const handleSubmit = async () => {
     try {
       setIsSubmitting(true);
-
       submitExam();
-
-     
-
       router.push("/result");
     } finally {
       setIsSubmitting(false);
