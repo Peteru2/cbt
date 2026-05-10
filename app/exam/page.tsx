@@ -24,7 +24,12 @@ export default function ExamPage() {
   }, [router]);
 
   // STORE
-  const hasHydrated = useExamStore.persist.hasHydrated();
+  const [hydrated, setHydrated] =
+  useState(false);
+
+useEffect(() => {
+  setHydrated(true);
+}, []);
 
   const currentQuestionIndex = useExamStore(
     (state) => state.currentQuestionIndex,
@@ -53,7 +58,7 @@ export default function ExamPage() {
   // ROUTE PROTECTION
   useEffect(() => {
     if (
-      hasHydrated &&
+      hydrated &&
       (!candidateId || !selectedQuestions.length || !examStarted)
     ) {
       resetExam();
@@ -61,7 +66,7 @@ export default function ExamPage() {
       router.replace("/");
     }
   }, [
-    hasHydrated,
+    hydrated,
     candidateId,
     selectedQuestions.length,
     examStarted,
@@ -102,7 +107,7 @@ export default function ExamPage() {
 
   // LOADING
 
-  if (!hasHydrated) {
+  if (!hydrated) {
     return (
       <main className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
         <div className="flex flex-col items-center gap-5">
