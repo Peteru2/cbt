@@ -4,28 +4,26 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { useExamStore } from "../store/examStore";
+import Image from "next/image";
 
 export default function InstructionsPage() {
   const router = useRouter();
   useEffect(() => {
-  router.prefetch("/exam");
-}, [router]);
+    router.prefetch("/exam");
+  }, [router]);
 
   // =========================
   // LOCAL STATE
   // =========================
-  const [isStarting, setIsStarting] =
-    useState(false);
+  const [isStarting, setIsStarting] = useState(false);
 
   // =========================
   // STORE
   // =========================
-  const startExam = useExamStore(
-    (state) => state.startExam
-  );
+  const startExam = useExamStore((state) => state.startExam);
 
   const initializeQuestions = useExamStore(
-    (state) => state.initializeQuestions
+    (state) => state.initializeQuestions,
   );
 
   // =========================
@@ -40,7 +38,7 @@ export default function InstructionsPage() {
       // Small frame delay
       // allows loading UI to paint first
       await new Promise((resolve) =>
-        requestAnimationFrame(() => resolve(true))
+        requestAnimationFrame(() => resolve(true)),
       );
 
       // Initialize exam
@@ -56,14 +54,12 @@ export default function InstructionsPage() {
 
   return (
     <main className="min-h-screen py-20 bg-slate-950 text-white flex items-center justify-center px-4 overflow-hidden">
-
-
       {/* CARD */}
       <div className="relative max-w-2xl w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl p-8 md:p-10 border border-slate-800 shadow-[0_0_60px_rgba(0,0,0,0.5)]">
         {/* HEADER */}
         <div className="mb-8">
-          <div className="h-16 w-16 rounded-2xl bg-blue-600 flex items-center justify-center text-2xl font-bold shadow-lg shadow-blue-500/20 mb-6">
-            i
+          <div className="w-full flex justify-center  mb-4 rounded-full">
+            <Image alt="jaarc" src="/jaarc.svg" width={100} height={100} />
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -71,8 +67,8 @@ export default function InstructionsPage() {
           </h1>
 
           <p className="text-slate-400 mt-3 leading-relaxed">
-            Please read the following instructions
-            carefully before beginning your test.
+            Please read the following instructions carefully before beginning
+            your test.
           </p>
         </div>
 
@@ -93,9 +89,7 @@ export default function InstructionsPage() {
                 {index + 1}
               </div>
 
-              <p className="text-slate-300 leading-relaxed">
-                {instruction}
-              </p>
+              <p className="text-slate-300 leading-relaxed">{instruction}</p>
             </div>
           ))}
         </div>
@@ -114,9 +108,7 @@ export default function InstructionsPage() {
             <>
               <div className="h-5 w-5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
 
-              <span>
-                Preparing Examination...
-              </span>
+              <span>Preparing Examination...</span>
             </>
           ) : (
             "Begin Test"

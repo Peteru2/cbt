@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 import { questions } from "../data/questions";
 
@@ -10,18 +10,14 @@ import { Question } from "../types/question";
 import { shuffleQuestions } from "../utils/shuffleQuestions";
 
 interface ExamStore {
-  // =========================
   // HYDRATION
-  // =========================
+
   hasHydrated: boolean;
 
-  setHasHydrated: (
-    state: boolean
-  ) => void;
+  setHasHydrated: (state: boolean) => void;
 
-  // =========================
   // EXAM STATE
-  // =========================
+
   candidateId: string;
 
   currentQuestionIndex: number;
@@ -38,27 +34,19 @@ interface ExamStore {
 
   selectedQuestions: Question[];
 
-  // =========================
   // ACTIONS
-  // =========================
-  setCandidateId: (
-    id: string
-  ) => void;
+
+  setCandidateId: (id: string) => void;
 
   startExam: () => void;
 
-  selectAnswer: (
-    questionId: number,
-    option: string
-  ) => void;
+  selectAnswer: (questionId: number, option: string) => void;
 
   nextQuestion: () => void;
 
   prevQuestion: () => void;
 
-  jumpToQuestion: (
-    index: number
-  ) => void;
+  jumpToQuestion: (index: number) => void;
 
   submitExam: () => void;
 
@@ -67,145 +55,112 @@ interface ExamStore {
   initializeQuestions: () => void;
 }
 
-export const useExamStore =
-  create<ExamStore>()(
-    persist(
-      (set) => ({
-        // =========================
-        // HYDRATION
-        // =========================
-        hasHydrated: false,
+export const useExamStore = create<ExamStore>()(
+  persist(
+    (set) => ({
+      // HYDRATION
 
-        setHasHydrated: (state) =>
-          set({
-            hasHydrated: state,
-          }),
+      hasHydrated: false,
 
-        // =========================
-        // STATE
-        // =========================
-        candidateId: "",
+      setHasHydrated: (state) =>
+        set({
+          hasHydrated: state,
+        }),
 
-        currentQuestionIndex: 0,
+      // STATE
 
-        answers: {},
+      candidateId: "",
 
-        examStarted: false,
+      currentQuestionIndex: 0,
 
-        examSubmitted: false,
+      answers: {},
 
-        examStartTime: null,
+      examStarted: false,
 
-        duration: 30 * 20,
+      examSubmitted: false,
 
-        selectedQuestions: [],
+      examStartTime: null,
 
-        // =========================
-        // ACTIONS
-        // =========================
-        setCandidateId: (id) =>
-          set({
-            candidateId: id,
-          }),
+      duration: 30 * 20,
 
-        initializeQuestions: () =>
-          set({
-            selectedQuestions:
-              shuffleQuestions(
-                questions,
-                20
-              ),
-          }),
+      selectedQuestions: [],
 
-        startExam: () =>
-          set({
-            examStarted: true,
-            examStartTime:
-              Date.now(),
-          }),
+      // ACTIONS
 
-        selectAnswer: (
-          questionId,
-          option
-        ) =>
-          set((state) => ({
-            answers: {
-              ...state.answers,
-              [questionId]:
-                option,
-            },
-          })),
+      setCandidateId: (id) =>
+        set({
+          candidateId: id,
+        }),
 
-        nextQuestion: () =>
-          set((state) => ({
-            currentQuestionIndex:
-              Math.min(
-                state.currentQuestionIndex +
-                  1,
-                state
-                  .selectedQuestions
-                  .length - 1
-              ),
-          })),
+      initializeQuestions: () =>
+        set({
+          selectedQuestions: shuffleQuestions(questions, 20),
+        }),
 
-        prevQuestion: () =>
-          set((state) => ({
-            currentQuestionIndex:
-              Math.max(
-                state.currentQuestionIndex -
-                  1,
-                0
-              ),
-          })),
+      startExam: () =>
+        set({
+          examStarted: true,
+          examStartTime: Date.now(),
+        }),
 
-        jumpToQuestion: (
-          index
-        ) =>
-          set({
-            currentQuestionIndex:
-              index,
-          }),
-
-        submitExam: () =>
-          set({
-            examSubmitted: true,
-          }),
-
-        resetExam: () => {
-          set({
-            candidateId: "",
-
-            currentQuestionIndex: 0,
-
-            answers: {},
-
-            examStarted: false,
-
-            examSubmitted: false,
-
-            examStartTime: null,
-
-            selectedQuestions: [],
-          });
-
-          localStorage.removeItem(
-            "cbt-storage"
-          );
-        },
-      }),
-
-      {
-        name: "cbt-storage",
-
-        // =========================
-        // HYDRATION FIX
-        // =========================
-        onRehydrateStorage:
-          () => (state) => {
-            state?.setHasHydrated(
-              true
-            );
+      selectAnswer: (questionId, option) =>
+        set((state) => ({
+          answers: {
+            ...state.answers,
+            [questionId]: option,
           },
-      }
-    )
-  );
+        })),
+
+      nextQuestion: () =>
+        set((state) => ({
+          currentQuestionIndex: Math.min(
+            state.currentQuestionIndex + 1,
+            state.selectedQuestions.length - 1,
+          ),
+        })),
+
+      prevQuestion: () =>
+        set((state) => ({
+          currentQuestionIndex: Math.max(state.currentQuestionIndex - 1, 0),
+        })),
+
+      jumpToQuestion: (index) =>
+        set({
+          currentQuestionIndex: index,
+        }),
+
+      submitExam: () =>
+        set({
+          examSubmitted: true,
+        }),
+
+      resetExam: () => {
+        set({
+          candidateId: "",
+
+          currentQuestionIndex: 0,
+
+          answers: {},
+
+          examStarted: false,
+
+          examSubmitted: false,
+
+          examStartTime: null,
+
+          selectedQuestions: [],
+        });
+      },
+    }),
+
+    {
+      name: "cbt-storage",
+
+      storage: createJSONStorage(() => sessionStorage),
+
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
+    },
+  ),
+);

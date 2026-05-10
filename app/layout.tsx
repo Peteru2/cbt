@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CBT",
   description: "A  simple CBT App",
+   icons: {
+    icon: '/src/assets/images/jaarc.svg', // Path to your icon
+    apple: '/src/assets/images/jaarc.svg', // Optional: for Apple devices
+  },
 };
 
 export default function RootLayout({
