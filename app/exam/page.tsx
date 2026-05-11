@@ -150,7 +150,6 @@ useEffect(() => {
       setIsSubmitting(true);
 
       submitExam();
-
       router.replace("/result");
     } catch (error) {
       console.error(error);
@@ -167,17 +166,31 @@ useEffect(() => {
           <div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
               <div>
-                <h1 className="text-3xl font-bold tracking-tight">
-                  <span className="text-green-500">JAARC-CBT</span> Practice
-                  Test
-                </h1>
+                <div className="flex items-center gap-4">
+  <img
+    src="/jaarc-cbt.png"
+    alt="JAARC Logo"
+    className="h-14 w-14 object-contain rounded-xl"
+  />
 
-                <p className="text-slate-400 mt-2">
-                  Candidate ID:
-                  <span className="text-white font-medium ml-2">
-                    {candidateId}
-                  </span>
-                </p>
+  <div>
+    <h1 className="text-3xl font-bold tracking-tight leading-none">
+      <span className="text-green-500">
+        JAARC-CBT
+      </span>{" "}
+      Practice Test
+    </h1>
+
+    <p className="text-slate-400 mt-2">
+      Candidate ID:
+      <span className="text-white font-medium ml-2">
+        {candidateId}
+      </span>
+    </p>
+  </div>
+</div>
+
+      
               </div>
 
               <Timer />

@@ -75,7 +75,7 @@ export default function HomePage() {
         {/* HEADER */}
         <div className="text-center">
           <div className="w-full flex justify-center  mb-4 rounded-full">
-            <Image alt="jaarc" src="/jaarc.svg" width={100} height={100} />
+            <Image alt="jaarc" src="/jaarc-cbt.png" width={100} height={100} className="rounded-md" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight">
             JAARC CBT Practice Test

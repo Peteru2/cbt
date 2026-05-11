@@ -12,23 +12,19 @@ export default function InstructionsPage() {
     router.prefetch("/exam");
   }, [router]);
 
-  // =========================
   // LOCAL STATE
-  // =========================
   const [isStarting, setIsStarting] = useState(false);
 
-  // =========================
   // STORE
-  // =========================
+
   const startExam = useExamStore((state) => state.startExam);
 
   const initializeQuestions = useExamStore(
     (state) => state.initializeQuestions,
   );
 
-  // =========================
   // START EXAM
-  // =========================
+
   const handleBegin = async () => {
     if (isStarting) return;
 
@@ -57,9 +53,9 @@ export default function InstructionsPage() {
       {/* CARD */}
       <div className="relative max-w-2xl w-full bg-slate-900/90 backdrop-blur-xl rounded-3xl p-8 md:p-10 border border-slate-800 shadow-[0_0_60px_rgba(0,0,0,0.5)]">
         {/* HEADER */}
-        <div className="mb-8">
+        <div className="mb-8 text-center">
           <div className="w-full flex justify-center  mb-4 rounded-full">
-            <Image alt="jaarc" src="/jaarc.svg" width={100} height={100} />
+            <Image alt="jaarc" src="/jaarc-cbt.png" className="rounded-md" width={100} height={100} />
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">

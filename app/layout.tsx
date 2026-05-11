@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "CBT",
   description: "A  simple CBT App",
    icons: {
-    icon: '/src/assets/images/jaarc.svg', // Path to your icon
-    apple: '/src/assets/images/jaarc.svg', // Optional: for Apple devices
+    icon: '/jaarc-cbt.png', // Path to your icon
+    apple: '/jaarc-cbt.png', // Optional: for Apple devices
   },
 };
 
