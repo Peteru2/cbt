@@ -160,6 +160,7 @@ useEffect(() => {
 
   return (
     <>
+              <Timer />
       <main className="min-h-screen bg-slate-950 text-white p-4 lg:p-8 overflow-hidden">
         <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[1fr_320px] gap-8">
           {/* MAIN */}
@@ -193,7 +194,6 @@ useEffect(() => {
       
               </div>
 
-              <Timer />
             </div>
 
             {/* QUESTION INFO */}
