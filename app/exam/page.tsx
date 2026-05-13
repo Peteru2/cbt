@@ -24,12 +24,11 @@ export default function ExamPage() {
   }, [router]);
 
   // STORE
-  const [hydrated, setHydrated] =
-  useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
-useEffect(() => {
-  setHydrated(true);
-}, []);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   const currentQuestionIndex = useExamStore(
     (state) => state.currentQuestionIndex,
@@ -141,9 +140,8 @@ useEffect(() => {
     );
   }
 
-  
   // SUBMIT
-    const handleFinalSubmit = async () => {
+  const handleFinalSubmit = async () => {
     if (isSubmitting) return;
 
     try {
@@ -160,40 +158,37 @@ useEffect(() => {
 
   return (
     <>
-              <Timer />
+      <Timer />
+
       <main className="min-h-screen bg-slate-950 text-white p-4 lg:p-8 overflow-hidden">
         <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[1fr_320px] gap-8">
           {/* MAIN */}
           <div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
               <div>
-                <div className="flex items-center gap-4">
-  <img
-    src="/jaarc-cbt.png"
-    alt="JAARC Logo"
-    className="h-14 w-14 object-contain rounded-xl"
-  />
+                <div className="md:flex items-center gap-4">
+                  <div className="flex justify-center">
+                    <img
+                      src="/jaarc-cbt.png"
+                      alt="JAARC Logo"
+                      className="h-14 w-14 object-contain rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <h1 className="md:text-3xl text-2xl  text-center mt-2 font-bold tracking-tight leading-none">
+                      <span className="text-green-500">JAARC-CBT</span> Practice
+                      Test
+                    </h1>
 
-  <div>
-    <h1 className="text-3xl font-bold tracking-tight leading-none">
-      <span className="text-green-500">
-        JAARC-CBT
-      </span>{" "}
-      Practice Test
-    </h1>
-
-    <p className="text-slate-400 mt-2">
-      Candidate ID:
-      <span className="text-white font-medium ml-2">
-        {candidateId}
-      </span>
-    </p>
-  </div>
-</div>
-
-      
+                    <p className="text-slate-400 md:mt-0 mt-8">
+                      Candidate ID:
+                      <span className="text-white font-medium ml-2">
+                        {candidateId}
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </div>
-
             </div>
 
             {/* QUESTION INFO */}
